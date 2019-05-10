@@ -44,9 +44,9 @@
 		}
 			
 
-			function insertUser($a,$b){
+	function insertUser($a,$b){
 		    $conn=conecta();		
-			$statement = $conn->prepare('INSERT INTO User(nome, senha) 
+			$statement = $conn->prepare('INSERT INTO usuario(nome, senha) 
 			VALUES(?,?)');
 			$statement->execute(array($a,$b));					
 		}

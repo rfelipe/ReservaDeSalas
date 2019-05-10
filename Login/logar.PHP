@@ -3,8 +3,7 @@ require_once '../conecta.inc';
 
 $usuario = $_POST['nome'];
 $senha 	 = $_POST['senha'];
-echo $usuario;
-echo $senha;
+echo 'vericando';
 if(conecta()){
 	$rst = selectUser($usuario,$senha);
 
