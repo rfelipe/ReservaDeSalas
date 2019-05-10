@@ -28,13 +28,7 @@
 		}
 
 		
-	//Consulta select com tabela e id;
-	function select($Q,$id,$tabela){
-			$conn=conecta();			
-			$data = $conn->query('SELECT * FROM ' . $tabela . ' WHERE ' .$Q. ' = ' . $conn->quote($id));
-			$dados_encontrados = $data->fetchAll(PDO::FETCH_OBJ);
-			return ($dados_encontrados);	
-		}
+
 	function select2($Coluna,$id,$colunax,$idx,$tabela){
 			$conn=conecta();			
 			$data = $conn->query('SELECT * FROM ' . $tabela . ' WHERE '
@@ -51,55 +45,13 @@
 			$statement->execute(array($a,$b));					
 		}
 
-	//Inserir Dados Projeto;
-	function insertProjeto($a,$b){
+	function insertSala($a,$b){
 		    $conn=conecta();		
-			$statement = $conn->prepare('INSERT INTO projeto(nomeprojeto, codpessoa) 
+			$statement = $conn->prepare('INSERT INTO sala(nomesala, descricao) 
 			VALUES(?,?)');
-			$statement->execute(array($a,$b));
-			$res=$conn->lastInsertId();
-			return $res;
+			$statement->execute(array($a,$b));					
 		}
 
-	//Inserir Dados Capa;
-	function insertCapa($a,$b,$c,$d,$e,$f,$g,$h){
-		    $conn=conecta();		
-			$statement = $conn->prepare('INSERT INTO capa(unidade,curso, imagcapa, nomeprojeto, nomefaculdade, cidade, nomepessoa, codprojeto) 
-			VALUES(?,?,?,?,?,?,?,?)');
-			$statement->execute(array($a,$b,$c,$d,$e,$f,$g,$h));					
-		}
-
-	//Inserir Dados folha de rosto;
-	function insertResumoRosto($a,$b,$c,$d){
-		    $conn=conecta();		
-			$statement = $conn->prepare('INSERT INTO resumo(textoresumo, folharosto, codprojeto, orientador) 
-			VALUES(?,?,?,?)');
-			$statement->execute(array($a,$b,$c,$d));					
-		}
-		//Inserir Dados Resumo objetivo;
-	function insertResumoObjetivo($a,$b,$c,$d,$e){
-		    $conn=conecta();		
-			$statement = $conn->prepare('INSERT INTO resumo(textoresumo, folharosto, objetivo, codprojeto,orientador) 
-			VALUES(?,?,?,?,?)');
-			$statement->execute(array($a,$b,$c,$d,$e));					
-		}
-
-	//Inserir Capitulo;
-	function insertCapitulo($a,$b,$c,$d,$e){
-		    $conn=conecta();		
-			$statement = $conn->prepare('INSERT INTO capitulo(codrefimagem ,textocapitulo,textodecorra,codprojeto,subcod) 
-			VALUES(?,?,?,?,?)');
-			$statement->execute(array($a,$b,$c,$d,$e));					
-		}
-
-	//Inserir Dados Referencia;
-	function insertReferencia($a,$b,$c,$d,$e){
-		    $conn=conecta();		
-			$statement = $conn->prepare('INSERT INTO referencia(codprojeto, autor, titulo, endereco, acessado) 
-			VALUES(?,?,?,?,?)');
-			$statement->execute(array($a,$b,$c,$d,$e));
-
-		}
 
 	//UPdate de dados do Funcionario ;	
 	function insertUpdate($a,$b,$c,$d,$e,$f,$g,$id){
