@@ -10,7 +10,7 @@
 				<label> Nome:
 					<input type="text" name="nomesala">
 				</label>
-			<p>
+				<p>
 				<label> Descrição:
 					<input type="text" name="descricao">
 				</label>

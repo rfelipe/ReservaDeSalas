@@ -27,16 +27,19 @@
 			return ($dados_encontrados);	
 		}
 
-		
-
-	function select2($Coluna,$id,$colunax,$idx,$tabela){
+	function selectSala(){
 			$conn=conecta();			
-			$data = $conn->query('SELECT * FROM ' . $tabela . ' WHERE '
-			 .$Coluna. ' = ' . $conn->quote($id). ' AND '. $colunax . ' = ' . $conn->quote($idx));
+			$data = $conn->query('SELECT * FROM sala');
 			$dados_encontrados = $data->fetchAll(PDO::FETCH_OBJ);
 			return ($dados_encontrados);	
 		}
-			
+
+	function selectReservasala(){
+			$conn=conecta();			
+			$data = $conn->query('SELECT * FROM reservasala');
+			$dados_encontrados = $data->fetchAll(PDO::FETCH_OBJ);
+			return ($dados_encontrados);	
+		}	
 
 	function insertUser($a,$b){
 		    $conn=conecta();		
