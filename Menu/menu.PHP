@@ -8,7 +8,7 @@ include '../Login/verifica.php';
 
 
 <div>
-	<a  href="../xxx/xxx.php">Cadastrar Nova Sala</a>
+	<a  href="../Formulario/formRegistraSala.php">Cadastrar Nova Sala</a>
 <div>
 	<a  href="../xxx/xxx.php">Reservar Sala</a>
 </div>
