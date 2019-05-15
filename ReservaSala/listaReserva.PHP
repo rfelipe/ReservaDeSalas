@@ -2,7 +2,7 @@
 require_once '../conecta.inc';
 include '../Login/verifica.php';
 
-	$_SESSION['userid'];
+	$userid=$_SESSION['userid'];
 
 	$rst 			= 	selectSala();
 	$disponibilidade =	selectReservasala();
@@ -30,7 +30,14 @@ include '../Login/verifica.php';
 									$hora=date("H:i:s",strtotime( $minha_Hora . " +".$i." hours"));
 									?>
 										<tr>
-											<td><?php echo $hora?>
+											<td >
+											<a  href="../ReservaSala/listaReservaSave.php?	
+																				salaid		=<?php echo $sala?>&
+																				data		=<?php echo $minha_Data?>&
+																				hora		=<?php echo $hora?>
+																				">
+												<?php echo $hora?>
+												
 											
 									<?php foreach($disponibilidade as $value){
 
@@ -40,10 +47,14 @@ include '../Login/verifica.php';
 
 													if($hora==$value->horario){?>
 
-												<spam><?php print "bloqueada";?>
+												<spam>
+												<?php print "bloqueada";?>
+												
 											</td>
 										</tr>		
-				<?php }
+				<?php 
+					
+					} 
 				}
 			}
 		}
@@ -53,4 +64,3 @@ include '../Login/verifica.php';
 
 <?php }?>
 </table>
-<hr>
