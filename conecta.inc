@@ -27,16 +27,29 @@
 			return ($dados_encontrados);	
 		}
 
-		
-
-	function select2($Coluna,$id,$colunax,$idx,$tabela){
+	function selectSala(){
 			$conn=conecta();			
-			$data = $conn->query('SELECT * FROM ' . $tabela . ' WHERE '
-			 .$Coluna. ' = ' . $conn->quote($id). ' AND '. $colunax . ' = ' . $conn->quote($idx));
+			$data = $conn->query('SELECT * FROM sala');
 			$dados_encontrados = $data->fetchAll(PDO::FETCH_OBJ);
 			return ($dados_encontrados);	
 		}
-			
+
+	function selectReservasala(){
+			$conn=conecta();			
+			$data = $conn->query('SELECT * FROM reservasala');
+			$dados_encontrados = $data->fetchAll(PDO::FETCH_OBJ);
+			return ($dados_encontrados);	
+		}
+	function selectReservasalaWhere($salaid,$data,$hora){
+			$conn=conecta();			
+			$data = $conn->query('SELECT reservaid,salaid,data,horario,userid FROM reservasala 
+				WHERE salaid 	=' . $conn->quote($salaid) 
+				. 'AND data 	=' . $conn->quote($data)
+				. 'AND horario 	=' . $conn->quote($hora)
+				);
+			$dados_encontrados = $data->fetchAll(PDO::FETCH_OBJ);
+			return ($dados_encontrados);	
+		}	
 
 	function insertUser($a,$b){
 		    $conn=conecta();		
@@ -51,7 +64,19 @@
 			VALUES(?,?)');
 			$statement->execute(array($a,$b));					
 		}
-
+	function insertReservasala($a,$b,$c,$d){
+		    $conn=conecta();		
+			$statement = $conn->prepare('INSERT INTO reservasala(salaid,data,horario,userid) 
+			VALUES(?,?,?,?)');
+			$statement->execute(array($a,$b,$c,$d));					
+		}
+	function DeleteReservasala($salaid,$data,$hora,$userid){
+			$conn=conecta();			
+			$data = $conn->query('DELETE FROM reservasala WHERE  salaid		=' . $conn->quote($salaid) 
+															.'AND data 		=' . $conn->quote($data)
+															.'AND horario 	=' . $conn->quote($hora)
+															.'AND userid 	=' . $conn->quote($userid));
+		}
 
 	//UPdate de dados do Funcionario ;	
 	function insertUpdate($a,$b,$c,$d,$e,$f,$g,$id){
@@ -60,11 +85,6 @@
 			 WHERE id_func= ?' );		
 			$statement->execute(array($a,$b,$c,$d,$e,$f,$g,$id));
 	
-		}
-	//Consulta DELETE com tabela e id e campo da tabela;
-	function Delete($Q,$id,$tabela){
-			$conn=conecta();			
-			$data = $conn->query('DELETE FROM ' . $tabela . ' WHERE ' .$Q. ' = ' . $conn->quote($id));
 		}
 	
  ?> 
