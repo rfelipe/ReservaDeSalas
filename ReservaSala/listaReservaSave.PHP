@@ -18,14 +18,17 @@ include '../Login/verifica.php';
 			$reservaHora	= $value->horario;
 			$reservaSalaid  = $value->salaid;
 		}
-			if($userid == $reservaUserId){
+
+			if(!empty($reservaUserId)&& ($userid==$reservaUserId)) {
 					DeleteReservasala($salaid,$data,$hora,$userid);
 					echo "<meta http-equiv='refresh' content='5;URL=../ReservaSala/listaReserva.php'>";
 				
 			}
-			else if(($reservaData==$data) && ($reservaHora == $hora) ){
-				echo "ja tem reerva";
-					
+			else if(!empty($reservaData)&& !empty($reservaHora)){
+				if(($reservaData==$data) && ($reservaHora == $hora) ){
+				echo "Voce não pode Demarcar essa Reserva";
+				echo "<meta http-equiv='refresh' content='5;URL=../ReservaSala/listaReserva.php'>";
+				}
 			}	
 			else{
 						insertReservasala($salaid,$data,$hora,$userid);

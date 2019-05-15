@@ -9,21 +9,30 @@ include '../Login/verifica.php';
 
 
 	$minha_Hora = '00:00:00';
- 	$minha_Data = '2019-05-13';
+ 	$minha_Data = date('Y-m-d');
 
 ?>
 
-
 <?php
-	foreach($rst as $value){ ?>
-		<table border="2" cellspacing="2" cellpadding="2" cellspacing="2">
+
+for($d=0;$d<5;$d++){
+
+
+	$dia=date('Y-m-d',strtotime('+'.$d.' day', strtotime($minha_Data)));
+ 	  
+	echo"<h1>".$dia."</h1>";
+
+	foreach($rst as $value){ 
+		echo"<table border='1'>";
+							?>
+
 		<tr>
-			<td scope="col">
+			<th scope="col">
 						<spam>sala:<?php print $nomesala	= $value->nomesala; ?>
 						<p>
 						<spam>descricao:<?php print $descriacao	= $value->descricao;?>
 						<?php $sala	= $value->salaid;?>
-					</td>
+					</th>
 			</tr>
 								<?php 
 								for($i=0;$i<=23;$i++){
@@ -31,19 +40,20 @@ include '../Login/verifica.php';
 									?>
 										<tr>
 											<td >
+												<?php echo $dia." "?>
 											<a  href="../ReservaSala/listaReservaSave.php?	
 																				salaid		=<?php echo $sala?>&
-																				data		=<?php echo $minha_Data?>&
+																				data		=<?php echo $dia?>&
 																				hora		=<?php echo $hora?>
 																				">
-												<?php echo $hora?>
+												<?php echo $hora ?>
 												
 											
 									<?php foreach($disponibilidade as $value){
 
 											if($sala==$value->salaid){
 
-												if($minha_Data==$value->data){
+												if($dia==$value->data){
 
 													if($hora==$value->horario){?>
 
@@ -51,16 +61,14 @@ include '../Login/verifica.php';
 												<?php print "bloqueada";?>
 												
 											</td>
-										</tr>		
+										</tr>	
 				<?php 
 					
-					} 
+						} 
+					}
 				}
-			}
+			}	
 		}
+		echo "</table>";
 	}?>
-
-			</td>
-
 <?php }?>
-</table>
