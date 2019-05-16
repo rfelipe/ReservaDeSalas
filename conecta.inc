@@ -4,10 +4,11 @@
 		//$username ='ditechguy'; 
 		//$password ='ditechguy';
 		//$conn = new PDO('mysql:host=challenges.ditech.com.br;port=3301;dbname=employees', $username, $password);
-		$username ='root'; 
-		$password ='';
 		
+		$username ='root'; 
+		$password ='';		
 		$conn = new PDO('mysql:host=localhost;dbname=employees', $username, $password);
+
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$pdo=$conn;
 		return $pdo;
