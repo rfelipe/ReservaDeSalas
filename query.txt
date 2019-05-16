@@ -1,5 +1,0 @@
-CREATE TABLE usuario(
-  userid int Primary key,
-  nome varchar(25) NOT NULL,
-  senha varchar(10) NOT NULL
-) ;
